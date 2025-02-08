@@ -11,6 +11,15 @@ class PomodoroTimer {
         this.resetButton = document.getElementById('reset');           // Reset timer button
         this.modeButtons = document.querySelectorAll('.mode-btn');     // Buttons for different timer durations
         
+        // Add after the existing constructor variables
+        this.circle = document.querySelector('.progress-ring__circle-progress');
+        this.radius = this.circle.r.baseVal.value;
+        this.circumference = 2 * Math.PI * this.radius;
+        
+        // Initialize the circle
+        this.circle.style.strokeDasharray = `${this.circumference} ${this.circumference}`;
+        this.circle.style.strokeDashoffset = this.circumference;
+        
         // Set up event listeners for user interactions
         this.startButton.addEventListener('click', () => this.toggleTimer());  // Handle start/pause
         this.resetButton.addEventListener('click', () => this.reset());        // Handle reset
@@ -30,6 +39,12 @@ class PomodoroTimer {
     // Updates the visible timer display with current time
     updateDisplay() {
         this.timeDisplay.textContent = this.formatTime(this.timeLeft);
+        
+        // Calculate and update progress
+        const activeButton = document.querySelector('.mode-btn.active');
+        const totalSeconds = parseInt(activeButton.dataset.time) * 60;
+        const progress = (this.timeLeft / totalSeconds) * 100;
+        this.setProgress(progress);
         
         // Update the page title
         document.title = `Pomodoro: ${this.formatTime(this.timeLeft)}`;
@@ -100,6 +115,12 @@ class PomodoroTimer {
     playAlarm() {
         // You can add a sound effect here
         alert('Time is up!');
+    }
+
+    // Add this new method
+    setProgress(percent) {
+        const offset = this.circumference - (percent / 100 * this.circumference);
+        this.circle.style.strokeDashoffset = offset;
     }
 }
 

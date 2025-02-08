@@ -18,7 +18,7 @@ body {
     text-align: center;
     padding: 2rem;
     width: 100%;
-    max-width: 440px;
+    max-width: 600px;
 }
 
 h1 {
@@ -30,18 +30,50 @@ h1 {
 
 .timer {
     background: rgba(255, 255, 255, 0.03);
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 24px;
     box-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
 }
 
+.progress-ring {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto 1.5rem;
+}
+
+.progress-ring__circle {
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress-ring__circle-bg,
+.progress-ring__circle-progress {
+    fill: none;
+    stroke-width: 8;
+}
+
+.progress-ring__circle-bg {
+    stroke: rgba(255, 255, 255, 0.05);
+}
+
+.progress-ring__circle-progress {
+    stroke: #2E7CF6;
+    transition: stroke-dashoffset 0.1s ease;
+}
+
 .time-display {
-    font-size: 7rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
     font-weight: 300;
     letter-spacing: -2px;
-    margin-bottom: 2.5rem;
     color: #ffffff;
     font-variant-numeric: tabular-nums;
     line-height: 1;

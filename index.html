@@ -10,7 +10,13 @@
     <div class="container">
         <h1>Peter's Pomodoro Timer</h1>
         <div class="timer">
-            <div class="time-display">25:00</div>
+            <div class="progress-ring">
+                <svg class="progress-ring__circle" width="320" height="320">
+                    <circle class="progress-ring__circle-bg" cx="160" cy="160" r="140" />
+                    <circle class="progress-ring__circle-progress" cx="160" cy="160" r="140" />
+                </svg>
+                <div class="time-display">25:00</div>
+            </div>
             <div class="mode-toggles">
                 <button class="mode-btn active" data-time="25">Work</button>
                 <button class="mode-btn" data-time="5">Rest</button>
